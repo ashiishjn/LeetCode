@@ -1,0 +1,33 @@
+class Solution 
+{
+    public int search(int[] nums, int target) 
+    {
+        int i,l=nums.length,h=nums.length-1,mid;
+        for(i=0;i<nums.length-1;i++)
+        {
+            if(nums[i]>nums[i+1])
+                l=i+1;
+        }
+        if(target==nums[0])
+            return 0;
+        else if(target>nums[0])
+        {
+            h=l-1;
+            l=1;
+        }
+        else
+            h=nums.length-1;
+        do
+        {
+            mid=(h+l)/2;
+            if(nums[mid]>target)
+                h=mid-1;
+            else if(nums[mid]<target)
+                l=mid+1;
+        }while(h>=l && nums[mid]!=target);
+        if(nums[mid]==target)
+            return mid;
+        else
+            return -1;
+    }
+}
