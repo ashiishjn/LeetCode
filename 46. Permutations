@@ -1,0 +1,32 @@
+class Solution 
+{
+    List<List<Integer>> l = new ArrayList<>();
+    public void addn(List<Integer> a, List<Integer> x)
+    {
+        if(a.size()==0)
+        {
+            List<Integer> t = new ArrayList<>();
+            t.addAll(x);
+            l.add(t);
+            return;
+        }
+        for(int i=0;i<a.size();i++)
+        {
+            x.add(0,a.remove(i));
+            addn(a,x);
+            a.add(i,x.remove(0));
+        }
+    }
+    public List<List<Integer>> permute(int[] nums) 
+    {
+        l.clear();
+        List<Integer> a = new ArrayList<>();
+        List<Integer> x = new ArrayList<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            a.add(nums[i]);
+        }
+        addn(a,x);
+        return l;
+    }
+}
