@@ -1,0 +1,41 @@
+class Solution 
+{
+    public void nextPermutation(int[] nums) 
+    {
+        int k=-1;
+        int i,c=0;
+        for(i=nums.length-1;i>0;i--)
+        {
+            if(nums[i]>nums[i-1])
+            {
+                k=i-1;
+                break;
+            }
+        }
+        if(k==-1)
+        {
+            Arrays.sort(nums);
+            return;
+        }
+        for(i=nums.length-1;i>0;i--)
+        {
+            if(nums[i]>nums[k])
+            {
+                c=i;
+                break;
+            }
+        }
+        i=nums[k];
+        nums[k++]=nums[c];
+        nums[c]=i;
+        c=nums.length-1;
+        while(k<c)
+        {
+            i=nums[k];
+            nums[k]=nums[c];
+            nums[c]=i;
+            k++;c--;
+        }
+        //reverse(nums,k+1,nums.length-1);
+    }
+}
