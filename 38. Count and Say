@@ -1,0 +1,31 @@
+class Solution 
+{
+    public String countAndSay(int n) 
+    {
+        if(n==1)
+            return "1";
+        String s="1";
+        for(int i=2;i<=n;i++)
+        {
+            String str="";
+            char c=s.charAt(0);
+            char x='1';
+            for(int j=1;j<s.length();j++)
+            {
+                if(s.charAt(j)==c)
+                    x++;
+                else
+                {
+                    str+=x;
+                    str+=c;
+                    x='1';
+                    c=s.charAt(j);
+                }
+            }
+            str+=x;
+            str+=c;
+            s=str;
+        }
+        return s;
+    }
+}
