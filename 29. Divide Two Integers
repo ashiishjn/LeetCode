@@ -1,0 +1,11 @@
+class Solution 
+{
+public:
+    int divide(int dividend, int divisor) 
+    {
+        long a= (long)dividend/divisor;
+        if(a>=2147483648)
+            a=2147483647;
+        return (int)a;
+    }
+};
