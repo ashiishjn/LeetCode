@@ -1,0 +1,47 @@
+class Solution 
+{
+    public boolean isValidSudoku(char[][] board) 
+    {
+        int i,j,k,l;
+        for(i=0;i<9;i++)
+        {
+            boolean[] cr = new boolean[9];
+            boolean[] cc = new boolean[9];
+            for(j=0;j<9;j++)
+            {
+                if(board[i][j] == '.')
+                    i=i;
+                else if(cr[board[i][j]-49]==false)
+                    cr[board[i][j]-49]=true;
+                else 
+                    return false;
+                if(board[j][i] == '.')
+                    i=i;
+                else if(cc[board[j][i]-49]==false)
+                    cc[board[j][i]-49]=true;
+                else 
+                    return false;
+            }
+        }
+        for(i=0;i<9;i+=3)
+        {
+            for(j=0;j<9;j+=3)
+            {
+                boolean[] cr = new boolean[9];
+                for(k=i;k<i+3;k++)
+                {
+                    for(l=j;l<j+3;l++)
+                    {
+                        if(board[k][l]=='.')
+                            continue;
+                        else if(cr[board[k][l]-49]==false)
+                            cr[board[k][l]-49]=true;
+                        else
+                            return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
