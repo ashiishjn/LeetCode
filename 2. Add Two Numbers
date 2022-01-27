@@ -1,0 +1,47 @@
+class Solution {
+public:
+    ListNode* formation (ListNode* l1, ListNode* l2, int d)
+    {
+        if(l1==NULL && l2==NULL)
+        {   
+            if(d==0)
+                return NULL;
+            ListNode *temp = new ListNode;
+            temp->val=d;
+            temp->next=NULL;
+            return temp;
+        }
+        ListNode *t=new ListNode;
+        ListNode *cur1,*cur2;
+        cur1=l1;
+        cur2=l2;
+        if(l1==NULL && l2!=NULL)
+        {
+            t->val=(cur2->val+d)%10;
+            t->next=formation(cur1,cur2->next,(cur2->val+d)/10);
+            return t;
+        }
+        if(l1!=NULL && l2==NULL)
+        {
+            t->val=(cur1->val+d)%10;
+            t->next=formation(cur1->next,cur2,(cur1->val+d)/10);
+            return t;
+        }
+        t->val=(cur1->val+cur2->val+d)%10;
+        t->next=formation(cur1->next,cur2->next,(cur1->val+cur2->val+d)/10);
+        return t;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
+    {
+        if(l1 == NULL && l2 == NULL)
+        {
+            ListNode *temp = new ListNode;
+            temp->val=0;
+            temp->next=NULL;
+            return temp;
+        }
+        ListNode *t ;
+        t=formation(l1, l2, 0);
+        return t;
+    }
+};
