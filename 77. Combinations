@@ -1,0 +1,29 @@
+class Solution 
+{
+    static List<List<Integer>> l =new ArrayList<List<Integer>>();
+    public void possible(int n, int k, int v, int[] arr, int i)
+    {
+        if(v==k)
+        {
+            List<Integer> l1 = new ArrayList<Integer>();
+            for(int z=0;z<k;z++)
+            {
+                l1.add(arr[z]);
+            }
+            l.add(l1);
+            return;
+        }
+        for(;i<=n-k+1+v;i++)
+        {
+            arr[v]=i;
+            possible(n,k,v+1,arr,i+1);
+        }
+    }
+    public List<List<Integer>> combine(int n, int k) 
+    {
+        l.clear();
+        int[] a = new int[k];
+        possible(n,k,0,a,1);
+        return l;
+    }
+}
