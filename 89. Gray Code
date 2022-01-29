@@ -1,0 +1,19 @@
+class Solution 
+{
+    public List<Integer> grayCode(int n) 
+    {
+        List<Integer> l = new ArrayList<Integer>();
+        l.add(0);
+        l.add(1);
+        for(int i=2;i<=n;i++)
+        {
+            int x=(int)Math.pow(2,i-1);
+            int a =(int)Math.pow(2,i);
+            for(int j=l.size()-1;j>=0;j--)
+            {
+                l.add(l.get(j)+x);
+            }
+        }
+        return l;
+    }
+}
