@@ -1,0 +1,32 @@
+class Solution 
+{
+    static List<List<Integer>> l =new ArrayList<List<Integer>>();
+    public void possible(int n, int k, int v, int[] arr, int i, int[] nums)
+    {
+        if(v==k)
+        {
+            List<Integer> l1 = new ArrayList<Integer>();
+            for(int z=0;z<k;z++)
+            {
+                l1.add(arr[z]);
+            }
+            l.add(l1);
+            return;
+        }
+        for(;i<=n-k+v;i++)
+        {
+            arr[v]=nums[i];
+            possible(n,k,v+1,arr,i+1,nums);
+        }
+    }
+    public List<List<Integer>> subsets(int[] nums) 
+    {
+        l.clear();
+        for(int i=0;i<=nums.length;i++)
+        {
+            int[] a = new int[i];
+            possible(nums.length,i,0,a,0,nums);
+        }
+        return l;
+    }
+}
