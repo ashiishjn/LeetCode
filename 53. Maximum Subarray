@@ -1,0 +1,35 @@
+class Solution 
+{
+    public int centre(int[] nums, int l, int m, int h)
+    {
+        int sum=0,i;
+        int l_s=Integer.MIN_VALUE;
+        for(i=m;i>=l;i--)
+        {
+            sum+=nums[i];
+            if(sum>l_s)
+                l_s=sum;
+        }
+        sum=0;
+        int r_s=Integer.MIN_VALUE;
+        for(i=m+1;i<=h;i++)
+        {
+            sum+=nums[i];
+            if(sum>r_s)
+                r_s=sum;
+        }
+        return (Math.max(Math.max(l_s,r_s),l_s+r_s));
+    }
+    public int maxi(int[] nums, int l,int h)
+    {
+        if(l==h)
+            return nums[l];
+        int m = (l+h)/2;
+        return Math.max(Math.max(maxi(nums,l,m),maxi(nums,m+1,h)),centre(nums,l,m,h));
+    }
+    public int maxSubArray(int[] nums) 
+    {
+        
+        return maxi(nums,0,nums.length-1);
+    }
+}
