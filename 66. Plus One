@@ -1,0 +1,23 @@
+class Solution 
+{
+    public int[] plusOne(int[] digits) 
+    {
+        int i,d=1;
+        List<Integer> l = new ArrayList<Integer>();
+        for(i=digits.length-1;i>=0;i--)
+        {
+            digits[i]+=d;
+            l.add(digits[i]%10);
+            d=digits[i]/10;
+        }
+        if(d==1)
+            l.add(d);
+        d=0;
+        int[] a = new int[l.size()];
+        for(i=l.size()-1;i>=0;i--)
+        {
+            a[d++]=l.get(i);
+        }
+        return a;
+    }
+}
