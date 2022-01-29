@@ -1,0 +1,22 @@
+class Solution 
+{
+    public int minsum(int[][] grid, int[][] sum, int m, int n)
+    {
+        if(m==0 && n==0)
+            return grid[0][0];
+        else if(sum[m][n]!=0)
+            return sum[m][n];
+        else if(m==0)
+            sum[m][n]=grid[m][n]+minsum(grid,sum,m,n-1);
+        else if(n==0)
+            sum[m][n]=grid[m][n]+minsum(grid,sum,m-1,n);
+        else 
+            sum[m][n]=grid[m][n]+Math.min(minsum(grid,sum,m,n-1),minsum(grid,sum,m-1,n));
+        return sum[m][n];
+    }
+    public int minPathSum(int[][] grid) 
+    {
+        int[][] sum = new int[grid.length][grid[0].length];
+        return minsum(grid,sum,grid.length-1,grid[0].length-1);
+    }
+}
