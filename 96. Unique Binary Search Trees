@@ -1,0 +1,15 @@
+class Solution 
+{
+    public int numTrees(int a) 
+    {
+        int[] n = new int [a+1];
+        n[0]=1;
+        n[1]=1;
+        for(int i=2;i<=a;i++)
+        {
+            for(int j=0;j<i;j++)
+                n[i]+=n[j]*n[i-1-j];
+        }
+        return n[a];
+    }
+}
