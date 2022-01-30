@@ -1,0 +1,25 @@
+class Solution 
+{
+    public List<Integer> getRow(int rowIndex) 
+    {
+        List<Integer> l = new ArrayList<Integer>();
+        int[] a = new int[rowIndex+1];
+        a[0]=1;
+        int s,p;
+        for(int i=1;i<=rowIndex;i++)
+        {
+            s=a[1];
+            a[1]=i;
+            a[i]=1;
+            for(int j=2;j<i;j++)
+            {
+                p=a[j];
+                a[j]=a[j]+s;
+                s=p;
+            }
+        }
+        for(int i=0;i<=rowIndex;i++)
+            l.add(a[i]);
+        return l;
+    }
+}
