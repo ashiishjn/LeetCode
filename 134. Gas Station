@@ -1,0 +1,50 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) 
+    {
+        int n=gas.length;
+        int i,j,a,f,x=1;
+        if(gas==cost)
+            return 0;
+        for(i=0;i<n;i++)
+        {
+            if(gas[i]<cost[i])
+            {
+                x=0;
+                continue;
+            }
+            else if(gas[i]==cost[i])
+                continue;
+            x=0;
+            a=0;
+            f=0;
+            for(j=i;j<n;j++)
+            {
+                a+=gas[j];
+                a-=cost[j];
+                if(a<0)
+                {
+                    f=1;
+                    break;
+                }
+                
+            }
+            if(f==1)
+                continue;
+            for(j=0;j<i;j++)
+            {
+                a+=gas[j];
+                a-=cost[j];
+                if(a<0)
+                {
+                    f=1;
+                    break;
+                }
+            }
+            if(f==0)
+                return i;
+        }
+        if(x==1)
+            return 0;
+        return -1;
+    }
+}
