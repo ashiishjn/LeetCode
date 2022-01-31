@@ -1,0 +1,31 @@
+class Solution {
+    public String getHint(String secret, String guess) 
+    {
+        int a[]=new int[10];
+        int b[]=new int[10];
+        int x=0,y=0,i,n=secret.length();
+        for(i=0;i<n;i++)
+        {
+            if(secret.charAt(i) == guess.charAt(i))
+                x++;
+            else
+            {
+                a[secret.charAt(i)-48]++;
+                b[guess.charAt(i)-48]++;
+            }
+        }
+        for(i=0;i<10;i++)
+        {
+            if(b[i]>=a[i])
+                y+=a[i];
+            else 
+                y+=b[i];
+        }
+        String s="";
+        s+=String.valueOf(x);
+        s+="A";
+        s+=String.valueOf(y);
+        s+="B";
+        return s;
+    }
+}
