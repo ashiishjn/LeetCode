@@ -1,0 +1,26 @@
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        quickSort(nums, 0, nums.length -1);
+        return nums[nums.length - k];
+    }
+    private void quickSort(int[]nums, int left, int right) {
+        if(left >= right) return;
+        int l = left;
+        int r = right;
+        int mid = (r - l)/2 + l;
+        int pivot = nums[mid];
+        while(r >= l) {
+            while(r >= l && nums[r] > pivot) r--;
+            while(r >= l && nums[l] < pivot) l++;
+            if(r >= l) {
+                int temp = nums[r];
+                nums[r] = nums[l];
+                nums[l] = temp;
+                r--;
+                l++;
+            }
+        }
+        quickSort(nums, left, r);
+        quickSort(nums, l, right);
+    }
+}
