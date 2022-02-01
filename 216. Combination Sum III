@@ -1,0 +1,31 @@
+class Solution 
+{
+    List<List<Integer>> l = new ArrayList<>();
+    public void permutation(int k, int n, List<Integer> l1, int sum, int x)
+    {
+        if(k==0 && sum == n)
+        {
+            List<Integer> q = new ArrayList<>();
+            q.addAll(l1);
+            l.add(q);
+        }
+        else if(sum>=n)
+            return;
+        for(int i=x-1;i>=1;i--)
+        {
+            l1.add(0,i);
+            permutation(k-1,n,l1,sum+i,i);
+            l1.remove(0);
+        }
+    }
+    public List<List<Integer>> combinationSum3(int k, int n) 
+    {
+        if(n>45)
+            return l;
+        if(n/k > 9)
+            return l;
+        List<Integer> q = new ArrayList<>();
+        permutation(k,n,q,0,10);
+        return l;
+    }
+}
