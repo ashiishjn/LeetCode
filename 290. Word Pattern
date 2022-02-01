@@ -1,0 +1,44 @@
+class Solution {
+    public boolean wordPattern(String pattern, String t) 
+    {
+        List<String> l = new ArrayList<String>();
+        int c=0;
+        String s="";
+        String x[]= new String[26];
+        int l1=pattern.length();
+        int l2=t.length();
+        for(int i=0;i<l2;i++)
+        {
+            if(t.charAt(i)==' ')
+            {
+                if(x[pattern.charAt(c)-97]==null)
+                {
+                    x[pattern.charAt(c)-97]=s;
+                    if(l.contains(s))
+                        return false;
+                    l.add(s);
+                }
+                else if(!(x[pattern.charAt(c)-97].equals(s)))
+                    return false;
+                s="";
+                c++;
+                if(c==l1)
+                    return false;
+            }
+            else
+                s+=t.charAt(i);
+        }
+        System.out.println("1"+x[0]);
+        if(c+1 != l1)
+            return false;
+        if(x[pattern.charAt(c)-97]==null)
+        {
+            if(l.contains(s))
+                return false;
+            return true;
+        }
+        else if(x[pattern.charAt(c)-97].equals(s))
+            return true;
+        return false;
+    }
+}
