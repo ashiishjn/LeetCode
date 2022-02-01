@@ -1,0 +1,22 @@
+class Solution 
+{
+    public boolean isIsomorphic(String s, String t) 
+    {
+        int n =s.length(),i;
+        int a[]=new int[128];
+        int b[]=new int[128];
+        int c[]=new int[128];
+        for(i=0;i<n;i++)
+        {
+            if(a[s.charAt(i)] == 0)
+                a[s.charAt(i)]=t.charAt(i);
+            else if(a[s.charAt(i)] != t.charAt(i))
+                return false;
+            //c[s.charAt(i)]++;    
+            //b[t.charAt(i)]++;
+            if(c[s.charAt(i)]++ != b[t.charAt(i)]++)
+                return false;
+        }
+        return true;
+    }
+}
