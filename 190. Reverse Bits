@@ -1,0 +1,18 @@
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) 
+    {
+        uint32_t z=2147483648;
+        uint32_t x=0;
+        int d;
+        while(n>0)
+        {
+            d=n%2;
+            if(d==1)
+                x+=z;
+            z/=2;
+            n/=2;
+        }
+        return x;
+    }
+};
