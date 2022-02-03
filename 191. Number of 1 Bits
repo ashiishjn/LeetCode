@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) 
+    {
+        int d,s=0;
+        cout<<n;
+        while(n>0)
+        {
+            d=n%2;
+            s+=d;
+            n/=2;
+        }
+        return s;
+        
+    }
+};
