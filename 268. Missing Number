@@ -1,0 +1,13 @@
+class Solution 
+{
+    public int missingNumber(int[] nums) 
+    {
+        int n=nums.length,i,sum=0;
+        for(i=0;i<n;i++)
+            sum+=nums[i];
+        n=n*(n+1);
+        n/=2;
+        n-=sum;
+        return n;
+    }
+}
