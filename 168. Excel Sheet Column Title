@@ -1,0 +1,15 @@
+class Solution {
+    public String convertToTitle(int columnNumber) 
+    {
+        String s="";
+        int d;
+        while(columnNumber>0)
+        {
+            columnNumber--;
+            d=columnNumber%26;
+            s=(char)(d+65)+s;
+            columnNumber/=26;
+        }
+        return s;
+    }
+}
