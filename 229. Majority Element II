@@ -1,0 +1,41 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) 
+    {
+        List<Integer> l = new ArrayList<>();
+        int c1=0,nums1=0,nums2=0,c2=0;
+        for(int i: nums)
+        {
+            if(i == nums1)
+                c1++;
+            else if(i == nums2)
+                c2++;
+            else if(c1==0)
+            {
+                c1=1;
+                nums1=i;
+            }
+            else if(c2==0)
+            {
+                c2=1;
+                nums2=i;
+            }
+            else
+            {
+                c1--;
+                c2--;
+            }
+        }
+        c1=0;
+        c2=0;
+        for(int i: nums)
+            if(nums1 == i)
+                c1++;
+            else if(nums2 == i)
+                c2++;
+        if(c1>nums.length/3)
+            l.add(nums1);
+        if(c2>nums.length/3)
+            l.add(nums2);
+        return l;
+    }
+}
