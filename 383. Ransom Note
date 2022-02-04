@@ -1,0 +1,22 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) 
+    {
+        if(ransomNote.length() > magazine.length())
+            return false;
+        int a[] = new int[27];
+        int b[] = new int[27];
+        int n=ransomNote.length(),i;
+        for(i=0;i<n;i++)
+        {
+            a[ransomNote.charAt(i)-96]++;
+            b[magazine.charAt(i)-96]++;
+        }
+        n=magazine.length();
+        for( ;i<n;i++)
+            b[magazine.charAt(i)-96]++;
+        for(i=1;i<=26;i++)
+            if(a[i]>b[i])
+                return false;
+        return true;
+    }
+}
