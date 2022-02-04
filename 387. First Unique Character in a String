@@ -1,0 +1,18 @@
+class Solution 
+{
+    public int firstUniqChar(String s) 
+    {
+        int i,n=s.length(),x,min=n;
+        for(i=97;i<=122;i++)
+        {
+            if(s.indexOf(i) == s.lastIndexOf(i) && s.indexOf(i) != -1)
+            {
+                if(min>s.indexOf(i))
+                    min = s.indexOf(i);
+            }
+        }
+        if(min==n)
+            return -1;
+        return min;
+    }
+}
