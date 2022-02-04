@@ -1,0 +1,22 @@
+class Solution 
+{
+    public int[][] matrixReshape(int[][] mat, int r, int c) 
+    {
+        int[][] a = new int[r][c];
+        int f=mat.length;
+        int g=mat[0].length;
+        if(f*g != r*c)
+            return mat;
+        int x=0,y=0;
+        for(int i=0;i<f;i++)
+        {
+            for(int j=0;j<g;j++)
+            {
+                a[x][y++]=mat[i][j];
+                x+=y/c;
+                y=y%c;
+            }
+        }
+        return a;
+    }
+}
