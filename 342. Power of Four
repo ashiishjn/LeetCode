@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isPowerOfFour(int n) 
+    {
+        if(n<=0)
+            return false;
+        int num=1;
+        for(int i=0;i<=14;i++)
+        {
+            if(num == n)
+                return true;
+            else if(num>n)
+                return false;
+            num = num<<2;
+        }
+        if(num == n)
+            return true;
+        return false;      
+    }
+}
