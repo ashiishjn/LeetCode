@@ -1,0 +1,17 @@
+class Solution {
+    public boolean checkIfExist(int[] arr) 
+    {
+        HashSet<Double> h = new HashSet<Double>();
+        for(int i:arr)
+        {
+            if(h.contains(i))
+                continue;
+            if(h.contains((double)i*2))
+                return true;
+            if(h.contains((double)i/2))
+                return true;
+            h.add((double)i);
+        }
+        return false;
+    }
+}
