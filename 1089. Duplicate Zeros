@@ -1,0 +1,22 @@
+class Solution {
+    public void duplicateZeros(int[] arr) 
+    {
+        int n=arr.length;
+        List<Integer> l = new ArrayList<>();
+        for(int i:arr)
+        {
+            if(i==0)
+            {
+                l.add(0);
+                l.add(0);
+            }
+            else
+                l.add(i);
+            if(l.size()==n)
+                break;
+        }
+        int i;
+        for(i=0;i<n;i++)
+            arr[i]=l.get(i);
+    }
+}
