@@ -1,3 +1,4 @@
+//Using extra space
 class Solution {
     public void duplicateZeros(int[] arr) 
     {
@@ -18,5 +19,41 @@ class Solution {
         int i;
         for(i=0;i<n;i++)
             arr[i]=l.get(i);
+    }
+}
+
+
+
+//Without using extra space
+class Solution {
+    public void duplicateZeros(int[] arr) 
+    {
+        int n=arr.length;
+        int i,c=0;
+        List<Integer> l = new ArrayList<>();
+        for(i=0; i<n;i++)
+        {
+            if(arr[i]==0)
+                c+=2;
+            else
+                c++;
+            if(c>=n)
+                break;
+        }
+        System.out.println(i);
+        int j=n-1;
+        if(c>n)
+            arr[j--]=arr[i--];
+        while(i>=0)
+        {
+            if(arr[i]==0)
+            {
+                arr[j--]=0;
+                arr[j--]=0;
+                i--;
+            }
+            else
+                arr[j--]=arr[i--];
+        }
     }
 }
