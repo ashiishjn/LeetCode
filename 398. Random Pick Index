@@ -1,0 +1,32 @@
+class Solution {
+    int nums[];
+    Random random;
+
+    public Solution(int[] nums) {
+        this.nums=nums;
+        this.random = new Random();
+        
+    }
+    
+    public int pick(int target) 
+    {
+        int n,i,index=0,c=0;
+        n=nums.length;
+        for(i=0;i<n;i++)
+        {
+            if(nums[i]==target)
+            {
+                c++;
+                if(random.nextInt(c)==0)
+                    index=i;
+            }            
+        }
+        return index;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int param_1 = obj.pick(target);
+ */
