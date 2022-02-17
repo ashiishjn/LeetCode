@@ -1,0 +1,24 @@
+class Solution {
+    char a[][]={{'a','b','c'},{'d','e','f'},{'g','h','i'},{'j','k','l'},{'m','n','o'},{'p','q','r','s'},{'t','u','v'},{'w','x','y','z'}};
+    public void backtrack(List<String> s, String digits, String word, int i)
+    {
+        if(i == digits.length())
+        {
+            s.add(word);
+            return;
+        }
+        for(int j=0; j<a[digits.charAt(i)-50].length;j++)
+        {
+            backtrack(s, digits, word + a[digits.charAt(i)-50][j], i+1);
+        }
+    }
+    public List<String> letterCombinations(String digits) 
+    {
+        List<String> s = new ArrayList<>();
+        if(digits.length() == 0)
+            return s;
+        backtrack(s, digits, "", 0);
+        return s;
+        
+    }
+}
