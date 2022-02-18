@@ -1,0 +1,33 @@
+class Solution {
+    public String removeKdigits(String num, int k) {
+        int n = num.length();
+        
+        LinkedList<Character> s=new LinkedList<>();
+        
+        for(int i=0;i<n;i++){
+            char ch=num.charAt(i);
+            
+            while(s.size() > 0 && k>0 && s.getLast() >ch){
+                k--;
+                s.removeLast();
+            }
+            s.addLast(ch);
+        }
+        
+        while( k>0){
+            k--;
+            s.removeLast();
+        }
+        
+        while(s.size() > 0 && s.getFirst() =='0'){
+            s.removeFirst();
+        }
+        
+        StringBuilder numk = new StringBuilder();
+        for(char c: s){
+            numk.append(c);
+        }
+        
+        return numk.length()==0? "0" : numk.toString();
+    }
+}
