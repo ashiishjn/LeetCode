@@ -1,0 +1,28 @@
+class Solution {
+    public void permute(List<List<Integer>> l, List<Integer> t, int[] nums, boolean[] used )
+    {
+        if(t.size() == nums.length)
+            l.add(new ArrayList<Integer>(t));
+        for(int i=0;i<nums.length;i++)
+        {
+            if(used[i])
+                continue;
+            if(i>0 && nums[i] == nums[i-1] && !used[i-1])
+                continue;
+            t.add(nums[i]);
+            used[i]=true;
+            permute(l,t,nums,used);
+            used[i]=false;
+            t.remove(t.size()-1);
+        }
+    }
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> l = new ArrayList<>();
+        boolean used[] = new boolean[nums.length];
+        List<Integer> t =new ArrayList<>();
+        permute(l, t, nums, used);
+        return l;
+        
+    }
+}
