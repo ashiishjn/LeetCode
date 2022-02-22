@@ -1,0 +1,13 @@
+class Solution {
+    public int bulbSwitch(int n) {
+        int a=0;
+        int x=0;
+        while(true)
+        {
+            if(n<=a)
+                return x;
+            x++;
+            a+=2*x+1;
+        }
+    }
+}
