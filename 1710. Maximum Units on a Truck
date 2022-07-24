@@ -1,0 +1,27 @@
+class Solution {
+    public int maximumUnits(int[][] boxTypes, int truckSize) 
+    {
+        int a[] = new int [1001];
+        int s=0,i;
+        for(i=0;i<boxTypes.length;i++)
+        {
+            a[boxTypes[i][1]]+=boxTypes[i][0];
+        }
+        for(i=1000;i>=0;i--)
+        {
+            if(a[i]==0)
+                continue;
+            if(truckSize>=a[i])
+            {
+                s+=(i*a[i]);
+                truckSize-=a[i];
+            }
+            else
+            {
+                s+=(i*truckSize);
+                break;
+            }
+        }
+        return s;
+    }
+}
