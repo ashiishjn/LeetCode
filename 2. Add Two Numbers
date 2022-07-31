@@ -1,47 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
-public:
-    ListNode* formation (ListNode* l1, ListNode* l2, int d)
-    {
-        if(l1==NULL && l2==NULL)
-        {   
-            if(d==0)
-                return NULL;
-            ListNode *temp = new ListNode;
-            temp->val=d;
-            temp->next=NULL;
-            return temp;
-        }
-        ListNode *t=new ListNode;
-        ListNode *cur1,*cur2;
-        cur1=l1;
-        cur2=l2;
-        if(l1==NULL && l2!=NULL)
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode temp = new ListNode();
+        ListNode a1,a2,a3;
+        a1=l1;
+        a2=l2;
+        a3=temp;
+        int carry=0,num;
+        while(a1!=null && a2!=null)
         {
-            t->val=(cur2->val+d)%10;
-            t->next=formation(cur1,cur2->next,(cur2->val+d)/10);
-            return t;
+            num=a1.val+a2.val+carry;
+            carry=num/10;
+            a1=a1.next;
+            a2=a2.next;
+            ListNode x = new ListNode();
+            x.val = num%10;
+            a3.next = x;
+            a3 = a3.next;
         }
-        if(l1!=NULL && l2==NULL)
+        while(a1!=null)
         {
-            t->val=(cur1->val+d)%10;
-            t->next=formation(cur1->next,cur2,(cur1->val+d)/10);
-            return t;
+            num = a1.val+carry;
+            carry = num/10;
+            a1=a1.next;
+            ListNode x = new ListNode();
+            x.val = num%10;
+            a3.next = x;
+            a3 = a3.next;
         }
-        t->val=(cur1->val+cur2->val+d)%10;
-        t->next=formation(cur1->next,cur2->next,(cur1->val+cur2->val+d)/10);
-        return t;
+        while(a2!=null)
+        {
+            num = a2.val+carry;
+            carry = num/10;
+            a2=a2.next;
+            ListNode x = new ListNode();
+            x.val = num%10;
+            a3.next = x;
+            a3 = a3.next;
+        }
+        if(carry != 0)
+        {
+            ListNode x = new ListNode();
+            x.val = carry;
+            a3.next = x;
+            a3=a3.next;
+        }
+        a3.next = null;
+       return temp.next;
     }
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
-    {
-        if(l1 == NULL && l2 == NULL)
-        {
-            ListNode *temp = new ListNode;
-            temp->val=0;
-            temp->next=NULL;
-            return temp;
-        }
-        ListNode *t ;
-        t=formation(l1, l2, 0);
-        return t;
-    }
-};
+}
