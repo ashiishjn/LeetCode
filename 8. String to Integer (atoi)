@@ -1,53 +1,29 @@
-class Solution 
-{
-    public int myAtoi(String s) 
-    {
-        int l=s.length();
-        int f=0,z=0;
+class Solution {
+    public int myAtoi(String s) {
         long n=0;
-        for(int i=0;i<l;i++)
+        int i=0,a=0;
+        s=s.trim();
+        if(s.length()==0)
+            return 0;
+        if(s.charAt(i)=='+' || s.charAt(i)=='-')
+            a=1;
+        while(a<s.length())
+            if(s.charAt(a)=='0')
+                a++;
+            else 
+                break;
+        for(i=a;i<a+11 && i<s.length();i++)
         {
-            if(z==0)
-            {
-                if(s.charAt(i)>=48 && s.charAt(i)<=57)
-                {
-                    z=1;
-                    n=(s.charAt(i)-48);
-                }
-                else if(s.charAt(i)=='+')
-                {
-                    z=1;
-                    f=0;
-                }
-                else if(s.charAt(i)=='-')
-                {
-                    z=1;
-                    f=1;
-                }
-                else if(s.charAt(i)==' ')
-                    continue;
-                else
-                    break;
-            }
+            if(s.charAt(i)>='0' && s.charAt(i)<='9')
+                n=n*10+(int)(s.charAt(i)-'0');
             else
-            {
-                if(s.charAt(i)>=48 && s.charAt(i)<=57)
-                {
-                    n=n*10+(s.charAt(i)-48);
-                    if(n>2147483647)
-                        break;
-                    else if(n< -2147483648)
-                        break;
-                }
-                else
-                    break;
-            }
+                break;
         }
-        if(f==1)
+        if(s.charAt(0)=='-')
             n=-n;
-        if(n>2147483647  )
+        if(n>2147483647)
             n=2147483647;
-        else if(n< -2147483648)
+        if(n<-2147483648)
             n=-2147483648;
         return (int)n;
     }
