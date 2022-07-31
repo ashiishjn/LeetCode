@@ -1,22 +1,18 @@
-class Solution 
-{
-    public String intToRoman(int num) 
-    {
-        String romans[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
-        int value[] = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-        int seqSize = romans.length;
-        int idx = seqSize - 1;
-        String ans = "";
+class Solution {
+    public String intToRoman(int num) {
+        int Num[] = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
+        String roman[] = {"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
+        String Roman="";
+        int a=12;
         while(num>0)
         {
-            while(value[idx]<=num)
+            while(num/Num[a] >0)
             {
-                ans += romans[idx];
-                num -= value[idx];
-                System.out.println(ans);
+                Roman+=roman[a];
+                num-=Num[a];
             }
-            idx--;
+            a--;
         }
-        return ans;
+        return Roman;
     }
 }
