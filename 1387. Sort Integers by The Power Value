@@ -1,0 +1,32 @@
+class Solution {
+    public int getKth(int lo, int hi, int k) {
+        Queue<int[]> pq = new PriorityQueue<>((a,b) -> a[1] != b[1] ? a[1] - b[1] : a[0] - b[0]);
+        
+        for (int i = lo; i <= hi; i++) {
+            pq.offer(new int[]{i, findPower(i)});
+        }
+        int ans = 0;
+        while (k-- > 0) {
+            ans = pq.poll()[0];
+        }
+        return ans;
+    }
+    
+    Map<Integer, Integer> memo = new HashMap<>();
+    public int findPower(int curr) {
+        int power = 0;
+        if (curr == 1) {
+            return 0;
+        }
+        if (memo.containsKey(curr)) {
+            return memo.get(curr);
+        }
+        if (curr % 2 == 0) {
+            power = 1 + findPower(curr / 2);
+        } else {
+            power = 1 + findPower((3 * curr) + 1);
+        }
+        memo.put(curr, power);
+        return power;
+    }
+}
