@@ -1,40 +1,37 @@
 /**
  * Definition for a binary tree node.
- * struct TreeNode {
+ * public class TreeNode {
  *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val,A TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
  */
-class Solution 
-{
-public:
-    TreeNode* formation(vector<int>& nums, int i, int j)
+class Solution {
+    
+    public TreeNode makeTree(int[] nums, int l, int r)
     {
-        if(i==j)
-            return NULL;
-        TreeNode *num = new TreeNode();
-        num->val=nums[(j+i)/2];
-        num->left=(formation(nums,i,(j+i)/2));
-        num->right=(formation(nums,(j+i)/2+1,j));
-        return num;
+        TreeNode head = new TreeNode();
+        if(l>r)
+            return null;
+        head.val = nums[(l+r)/2];
+        head.left = makeTree(nums, l, (l+r)/2 -1);
+        head.right = makeTree(nums, (l+r)/2 +1, r);
+        return head;
     }
-    TreeNode* sortedArrayToBST(vector<int>& nums) 
-    {
-        TreeNode *num = new TreeNode();
-        int a=nums.size();
-        if(a==0)
-        {
-            num=NULL;
-            return num;
-        }
-        int x=nums.size();
-        num->val=nums[x/2];
-        num->left=(formation(nums,0,x/2));
-        num->right=(formation(nums,x/2+1,x));
-        return num;
+    
+    public TreeNode sortedArrayToBST(int[] nums) {
+        TreeNode head = new TreeNode();
+        head.val = nums[nums.length/2];
+        head.left = makeTree(nums, 0, nums.length/2 -1);;
+        head.right = makeTree(nums, nums.length/2 +1, nums.length-1);;
+        return head;
+        
     }
-};
+}
